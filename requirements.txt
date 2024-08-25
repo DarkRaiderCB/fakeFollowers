@@ -1,0 +1,7 @@
+re
+bs4
+random
+requests
+instaloader
+getpass
+pandas
