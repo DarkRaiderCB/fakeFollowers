@@ -18,7 +18,6 @@ With the rise of social media, fake followers have become a common issue for inf
 
 ## Features
 
-- **Engagement Rate Analysis**: Evaluates the engagement rate of followers to detect bots or inactive accounts.
 - **Follower/Following Ratio**: Analyzes the ratio to identify potential fake followers.
 - **Proxy Support**: Includes proxy support to avoid getting blocked by social media platforms during analysis.
 
