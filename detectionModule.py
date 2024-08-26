@@ -4,6 +4,7 @@ import random
 import requests
 import instaloader
 import getpass
+import time
 
 
 def getHeaders():
@@ -90,7 +91,7 @@ def flagFake(data):
             print(follower)
             print("---------Most likely a private account---------")
 
-        elif follower and follower['followers/following ratio'] is not None and follower['followers/following ratio'] <= 0.75:
+        elif follower and follower['followers/following ratio'] is not None and follower['followers/following ratio'] <= 0.05:
             fake.append([follower['Profile Name'],
                         follower['Followers'], follower['Following']])
     return fake
@@ -104,6 +105,7 @@ def getFollowers(creatorUsername, L):
         follower_list = []
         for follower in profile.get_followers():
             follower_list.append(follower.username)
+            time.sleep(0.5)
         return follower_list
     except instaloader.exceptions.ProfileNotExistsException:
         print("Error: The profile does not exist.")
