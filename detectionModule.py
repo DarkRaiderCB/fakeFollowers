@@ -42,38 +42,36 @@ def getInstagramData(followerUsername):
         return None
 
     soup = BeautifulSoup(response.text, 'html.parser')
-    try:
-        profileName = soup.find('meta', property='og:title')['content']
-        profileName = re.sub(
-            r' • Instagram photos and videos', '', profileName)
+    profileName = soup.find('meta', property='og:title')['content']
+    profileName = re.sub(
+        r' • Instagram photos and videos', '', profileName)
 
-        profileDescription = soup.find(
-            'meta', property='og:description')['content']
-        profileDescription = re.sub(r'[^\w\s]', '', profileDescription)
-        profileDescription = profileDescription.split(' ')
+    profileDescription = soup.find(
+        'meta', property='og:description')['content']
+    profileDescription = re.sub(r'[^\w\s]', '', profileDescription)
+    profileDescription = profileDescription.split(' ')
 
-        followers = [profileDescription[i - 1]
-                     for i in range(len(profileDescription)) if profileDescription[i].lower() == 'followers']
-        following = [profileDescription[i - 1]
-                     for i in range(len(profileDescription)) if profileDescription[i].lower() == 'following']
+    followers = [profileDescription[i - 1]
+                 for i in range(len(profileDescription)) if profileDescription[i].lower() == 'followers']
+    following = [profileDescription[i - 1]
+                 for i in range(len(profileDescription)) if profileDescription[i].lower() == 'following']
 
-        followers = int(followers[0].replace(',', ''))
-        following = int(following[0].replace(',', ''))
-    except (IndexError, TypeError, ValueError) as e:
-        if "M" or "K" in followers or following:
-            followers = int(float(followers.replace('M', '')) * 1000000) if 'M' in followers else int(
-                float(followers.replace('K', '')) * 1000)
-            following = int(float(following.replace('M', '')) * 1000000) if 'M' in following else int(
-                float(following.replace('K', '')) * 1000)
-        else:
-            print(f"Error parsing data for {followerUsername}: {e}")
-            return {
-                'Profile Name': profileName if 'profileName' in locals() else followerUsername,
-                'followers/following ratio': None
-            }
+    followers = followers[0].replace(',', '')
+    following = following[0].replace(',', '')
+
+    if 'M' in followers:
+        followers = int(float(followers.replace('M', '')) * 1000000)
+    elif 'K' in followers:
+        followers = int(float(followers.replace('K', '')) * 1000)
+
+    if 'M' in following:
+        following = int(float(following.replace('M', '')) * 1000000)
+    elif 'K' in following:
+        following = int(float(following.replace('K', '')) * 1000)
 
     try:
-        followerFollowingRatio = followers / following if following > 0 else None
+        followerFollowingRatio = int(
+            followers) / int(following) if int(following) > 0 else None
     except ZeroDivisionError:
         followerFollowingRatio = None
 
@@ -88,11 +86,11 @@ def getInstagramData(followerUsername):
 def flagFake(data):
     fake = []
     for follower in data:
-        if follower['Followers'] == 0 and follower['Following'] != 0:
+        if int(follower['Followers']) == 0 and int(follower['Following']) != 0:
             print(follower)
             print("---------Most likely a private account---------")
 
-        elif follower and follower['followers/following ratio'] is not None and follower['followers/following ratio'] <= 0.05:
+        elif follower and follower['followers/following ratio'] is not None and follower['followers/following ratio'] <= 0.75:
             fake.append([follower['Profile Name'],
                         follower['Followers'], follower['Following']])
     return fake
@@ -103,7 +101,10 @@ def getFollowers(creatorUsername, L):
         profile = instaloader.Profile.from_username(L.context, creatorUsername)
         print("Fetching followers... This may take a while.")
         print("-" * 50)
-        return [follower.username for follower in profile.get_followers()]
+        follower_list = []
+        for follower in profile.get_followers():
+            follower_list.append(follower.username)
+        return follower_list
     except instaloader.exceptions.ProfileNotExistsException:
         print("Error: The profile does not exist.")
         return None
