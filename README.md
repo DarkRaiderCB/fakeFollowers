@@ -9,8 +9,6 @@ A Python-based tool designed to identify and flag fake followers on social media
 - [Installation](#installation)
 - [Usage](#usage)
 - [Files Description](#files-description)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
