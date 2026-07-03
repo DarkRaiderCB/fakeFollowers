@@ -41,10 +41,6 @@ Make sure you have Python installed. Then, install the necessary Python packages
 pip install -r requirements.txt
 ```
 
-### 3. Set up your environment
-
-If needed, configure your API keys or other environment variables in a `.env` file.
-
 ## Usage
 
 To use the tool, run the `main.py` file. You can provide various inputs such as the social media profile to analyze and other parameters:
@@ -59,14 +55,6 @@ python main.py
 - **`detectionModule.py`**: Contains the core logic for detecting fake followers. Includes functions to calculate engagement rate, follower/following ratio, and other criteria.
 - **`proxies.py`**: Manages proxy configurations to prevent IP blocking during large-scale analysis.
 
-## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
 
 Thanks for visiting!
