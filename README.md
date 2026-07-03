@@ -1,6 +1,6 @@
 # Fake Follower Detection
 
-This project is a Python-based tool designed to identify and flag fake followers on social media profiles. It uses various criteria such as engagement rate and follower/following ratio to evaluate the authenticity of followers.
+A Python-based tool designed to identify and flag fake followers on social media profiles. It analyzes various criteria such as engagement rate and follower/following ratio to evaluate account authenticity.
 
 ## Table of Contents
 
@@ -14,51 +14,59 @@ This project is a Python-based tool designed to identify and flag fake followers
 
 ## Overview
 
-With the rise of social media, fake followers have become a common issue for influencers, brands, and businesses. This tool helps in identifying those fake followers by analyzing different parameters of a social media profile.
+With the rise of social media, fake followers have become a common issue for influencers, brands, and businesses. This tool helps identify fake followers by analyzing different parameters and metrics, providing insights into account authenticity and engagement quality.
 
 ## Features
 
-- **Follower/Following Ratio**: Analyzes the ratio to identify potential fake followers.
-- **Proxy Support**: Includes proxy support to avoid getting blocked by social media platforms during analysis.
+- **Follower/Following Ratio Analysis**: Analyzes the ratio to identify potential fake followers
+- **Proxy Support**: Includes proxy support to avoid getting blocked by social media platforms during large-scale analysis
+- **Engagement Rate Calculation**: Evaluates engagement metrics to determine account legitimacy
 
 ## Installation
 
 To run this project locally, follow these steps:
 
-1. **Clone the repository:**
+### 1. Clone the repository
 
-    ```bash
-    git clone https://github.com/yourusername/fakeFollower_project.git
-    cd fakeFollower_project
-    ```
+```bash
+git clone https://github.com/DarkRaiderCB/fakeFollowers.git
+cd fakeFollowers
+```
 
-2. **Install required dependencies:**
+### 2. Install required dependencies
 
-    Make sure you have Python installed. Then, install the necessary Python packages:
+Make sure you have Python installed. Then, install the necessary Python packages:
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+```bash
+pip install -r requirements.txt
+```
 
-3. **Set up your environment:**
+### 3. Set up your environment
 
-    If needed, configure your API keys or other environment variables in a `.env` file.
+If needed, configure your API keys or other environment variables in a `.env` file.
 
 ## Usage
 
-To use the tool, run the `main.py` file. You can provide various inputs such as the social media profile to analyze and other parameters.
+To use the tool, run the `main.py` file. You can provide various inputs such as the social media profile to analyze and other parameters:
 
 ```bash
 python main.py
 ```
 
-4. **Files Description**
+## Files Description
 
-```main.py```: The entry point of the project. Handles the overall flow and user input.
+- **`main.py`**: The entry point of the project. Handles the overall flow and user input.
+- **`detectionModule.py`**: Contains the core logic for detecting fake followers. Includes functions to calculate engagement rate, follower/following ratio, and other criteria.
+- **`proxies.py`**: Manages proxy configurations to prevent IP blocking during large-scale analysis.
 
-```detectionModule.py```: Contains the core logic for detecting fake followers. It includes functions to calculate engagement rate, follower/following ratio, and other criteria.
+## Contributing
 
-```proxies.py```: Manages proxy configurations to prevent IP blocking during large-scale analysis.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
+## License
 
-## Thanks for visiting!
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+Thanks for visiting!
